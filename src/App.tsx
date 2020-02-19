@@ -11,6 +11,7 @@ function App() {
 		<div className="App">
 			<Layout>
 				<p>Hello World</p>
+				<Modal />
 			</Layout>
 		</div>
 	);
