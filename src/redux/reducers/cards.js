@@ -28,13 +28,27 @@ const initialState = {
 			compareVal: 3,
 		},
 	},
-	compare: [],
+	flipped: [],
 };
 
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case FLIP_CARD: {
 			const { id } = action.payload;
+			const { flipped } = state;
+			const newFlipped = [];
+			if (flipped.length) {
+				const first = state.byIds[flipped[0]].compareVal;
+				const second = state.byIds[id].compareVal;
+				console.log(first, second);
+				if (first === second) {
+					console.log('they are equal!');
+				} else {
+					console.log('not equal!');
+				}
+			} else {
+				newFlipped.push(id);
+			}
 			return {
 				...state,
 				byIds: {
@@ -44,6 +58,7 @@ export default function(state = initialState, action) {
 						hidden: !state.byIds[id].hidden,
 					},
 				},
+				flipped: newFlipped,
 			};
 		}
 		case COMPARE_CARD: {
