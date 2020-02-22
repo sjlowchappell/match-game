@@ -19,7 +19,7 @@ const Card: FC<CardProps> = ({ card, flipCard, compareCard, flipped }) => {
 	const handleClick = () => {
 		flipCard(card.id);
 		if (flipped.length) {
-			// setTimeout so that the user has a moment to see both cards before they are compared and flipped
+			// setTimeout so that the user has a moment to see both cards before they are compared and flipped. Currently messes with things so maybe disable flipcard until it is over? will have to figure this out later
 			setTimeout(compareCard, 300);
 		}
 	};

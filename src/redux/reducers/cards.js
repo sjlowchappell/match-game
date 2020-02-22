@@ -46,7 +46,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-	console.log(action);
 	switch (action.type) {
 		case FLIP_CARD: {
 			const { id } = action.payload;
@@ -113,7 +112,6 @@ export default function(state = initialState, action) {
 			};
 		}
 		case CHOOSE_DECK: {
-			console.log('choosing deck!');
 			const { deckName } = action.payload;
 			const newDeckType = deckName;
 			return {
@@ -122,7 +120,6 @@ export default function(state = initialState, action) {
 			};
 		}
 		case CHOOSE_DIFFICULTY: {
-			console.log('choosing difficulty!');
 			const { difficultyLevel } = action.payload;
 			const newDifficulty = difficultyLevel;
 			return {
