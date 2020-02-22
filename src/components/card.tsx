@@ -15,7 +15,7 @@ const Card: FC<CardProps> = ({ card, flipCard }) => {
 			{/* Button with handleClick method contains the image */}
 			<button onClick={() => flipCard(card.id)}>
 				{/* Conditionally render the image based upon state */}
-				{card.hidden ? <p>Back Side</p> : <p>Front Side</p>}
+				{card.hidden ? <p>Back Side</p> : <p>{card.id}</p>}
 			</button>
 		</div>
 	);

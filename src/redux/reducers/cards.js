@@ -1,16 +1,19 @@
-import { FLIP_CARD } from '../actionTypes.js';
+import { FLIP_CARD, COMPARE_CARD } from '../actionTypes.js';
 
 const initialState = {
 	allIds: [1, 2, 3],
 	byIds: {
 		1: {
 			hidden: true,
+			compareVal: 1,
 		},
 		2: {
 			hidden: true,
+			compareVal: 2,
 		},
 		3: {
 			hidden: true,
+			compareVal: 3,
 		},
 	},
 };
@@ -28,6 +31,9 @@ export default function(state = initialState, action) {
 					},
 				},
 			};
+		}
+		case COMPARE_CARD: {
+			return null;
 		}
 		default:
 			return state;

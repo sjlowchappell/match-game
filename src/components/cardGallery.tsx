@@ -7,11 +7,9 @@ interface CardGalleryProps {
 }
 
 const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
-	// console.log(cards);
 	return (
 		<div>
 			{cards.map((card, index) => {
-				// console.log(card);
 				return <Card key={`cardid-${index}`} card={card} image={'Fake'} />;
 			})}
 		</div>
@@ -19,13 +17,12 @@ const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 };
 
 const mapStateToProps = (state: any) => {
-	const cards = state.cards.allIds.map((id: any) => {
+	const cards = state.cards.allIds.map((id: number) => {
 		return {
 			...state.cards.byIds[id],
 			id,
 		};
 	});
-	// console.log(cards);
 	return { cards };
 };
 
