@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 import Card from './card';
 
 interface CardGalleryProps {
-	cards: [];
+	cards: any;
 }
 
 const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 	return (
 		<div>
-			{cards.map((card, index) => {
-				return <Card key={`cardid-${index}`} card={card} image={'Fake'} />;
+			{cards.deck.map((card: any, index: any) => {
+				return <Card key={`cardid-${index}`} card={card} image={'Fake'} flipped={cards.flipped} />;
 			})}
+			.
 		</div>
 	);
 };
@@ -23,7 +24,7 @@ interface StateState {
 }
 
 const mapStateToProps = (state: StateState) => {
-	const cards = state.cards.deck;
+	const cards = state.cards;
 	return { cards };
 };
 

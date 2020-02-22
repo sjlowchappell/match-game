@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { flipCard } from '../redux/actions';
+import { flipCard, compareCard } from '../redux/actions';
 
 interface CardProps {
 	image: string;
@@ -11,9 +11,17 @@ interface CardProps {
 		id: number;
 	};
 	flipCard: any;
+	compareCard: any;
+	flipped: [];
 }
 
-const Card: FC<CardProps> = ({ card, flipCard }) => {
+const Card: FC<CardProps> = ({ card, flipCard, compareCard, flipped }) => {
+	const handleClick = () => {
+		flipCard(card.id);
+		if (flipped.length) {
+			setTimeout(compareCard, 300);
+		}
+	};
 	return (
 		<div>
 			{/* If a card has been matched already and locked is true, just show the card */}
@@ -21,7 +29,7 @@ const Card: FC<CardProps> = ({ card, flipCard }) => {
 				<p>{card.compareVal}</p>
 			) : (
 				// If the card has not been matched, render a button that can be clicked to flip the card
-				<button onClick={() => flipCard(card.id)}>
+				<button onClick={() => handleClick()}>
 					{/* Conditionally render the image based upon state */}
 					{card.hidden ? <p>Back Side</p> : <p>{card.compareVal}</p>}
 				</button>
@@ -30,4 +38,9 @@ const Card: FC<CardProps> = ({ card, flipCard }) => {
 	);
 };
 
-export default connect(null, { flipCard })(Card);
+const mapDispatchToProps = {
+	flipCard,
+	compareCard,
+};
+
+export default connect(null, mapDispatchToProps)(Card);

@@ -1,4 +1,4 @@
-import { FLIP_CARD } from '../actionTypes.js';
+import { FLIP_CARD, COMPARE_CARD } from '../actionTypes.js';
 
 const initialState = {
 	deck: [
@@ -52,54 +52,51 @@ export default function(state = initialState, action) {
 				hidden: !state.deck[id].hidden,
 			};
 
-			// This logic should be pulled out into a separate reducer I think
-			const { flipped } = state;
-			const newFlipped = [];
+			const newFlipped = [...state.flipped];
 
-			// if a card is flipped already
-			if (flipped.length) {
-				// get the first cards compare value
-				const first = state.deck[flipped[0]];
-				// get the second cards compare value
-				const second = state.deck[id];
-				// if the compare values are equal
-				if (first.compareVal === second.compareVal) {
-					// Set locked for first to true
-					newDeck[first.id] = {
-						...state.deck[first.id],
-						locked: true,
-					};
-					// Set locked for second to true
-					newDeck[second.id] = {
-						...state.deck[second.id],
-						locked: true,
-					};
-					// Set flipped to empty array
-					console.log('they are equal!');
-				} else {
-					// Set hidden for first to true
-					newDeck[first.id] = {
-						...state.deck[first.id],
-						hidden: true,
-					};
-					// Set hidden for second to true
-					newDeck[second.id] = {
-						...state.deck[second.id],
-						hidden: true,
-					};
-					console.log('not equal!');
-				}
-			} else {
-				// if no card is flipped, added the current card to the flipped array
-				newFlipped.push(id);
-			}
-
-			// End of logic that should be in a separate reducer
+			newFlipped.push(id);
 
 			return {
 				...state,
 				deck: newDeck,
 				flipped: newFlipped,
+			};
+		}
+		case COMPARE_CARD: {
+			// create a new deck object based on deck in state
+			const newDeck = [...state.deck];
+			// get the first card object
+			const firstCard = state.deck[state.flipped[0]];
+			// get the second card object
+			const secondCard = state.deck[state.flipped[1]];
+			// if the compare values are equal
+			if (firstCard.compareVal === secondCard.compareVal) {
+				// Set locked for firstCard to true
+				newDeck[firstCard.id] = {
+					...state.deck[firstCard.id],
+					locked: true,
+				};
+				// Set locked for secondCard to true
+				newDeck[secondCard.id] = {
+					...state.deck[secondCard.id],
+					locked: true,
+				};
+			} else {
+				// Set hidden for firstCard to true
+				newDeck[firstCard.id] = {
+					...state.deck[firstCard.id],
+					hidden: true,
+				};
+				// Set hidden for secondCard to true
+				newDeck[secondCard.id] = {
+					...state.deck[secondCard.id],
+					hidden: true,
+				};
+			}
+			return {
+				...state,
+				deck: newDeck,
+				flipped: [],
 			};
 		}
 		default:

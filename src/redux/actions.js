@@ -5,7 +5,6 @@ export const flipCard = id => ({
 	payload: { id },
 });
 
-export const compareCard = (id, compareVal) => ({
+export const compareCard = () => ({
 	type: COMPARE_CARD,
-	payload: { id, compareVal },
 });
