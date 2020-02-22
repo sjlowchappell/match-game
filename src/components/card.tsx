@@ -9,13 +9,19 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ card, flipCard }) => {
+	// console.log(card.id);
 	return (
 		<div>
 			{/* Button with handleClick method contains the image */}
-			<button onClick={() => flipCard(card.id)}>
-				{/* Conditionally render the image based upon state */}
-				{card.hidden ? <p>Back Side</p> : <p>{card.compareVal}</p>}
-			</button>
+			{card.locked ? (
+				<p>{card.compareVal}</p>
+			) : (
+				<button onClick={() => flipCard(card.id)}>
+					{/* {console.log(card.hidden)} */}
+					{/* Conditionally render the image based upon state */}
+					{card.hidden ? <p>Back Side</p> : <p>{card.compareVal}</p>}
+				</button>
+			)}
 		</div>
 	);
 };
