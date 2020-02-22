@@ -12,7 +12,8 @@ function App() {
 			<Layout>
 				<p>Hello World</p>
 				<Modal />
-				<Card image={'Fake Path'} />
+				<CardGallery />
+				{/* <Card image={'Fake Path'} /> */}
 			</Layout>
 		</div>
 	);
