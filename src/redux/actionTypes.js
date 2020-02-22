@@ -1,2 +1,4 @@
 export const FLIP_CARD = 'FLIP_CARD';
 export const COMPARE_CARD = 'COMPARE_CARD';
+export const CHOOSE_DECK = 'CHOOSE_DECK';
+export const CHOOSE_DIFFICULTY = 'CHOOSE_DIFFICULTY';

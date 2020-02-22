@@ -1,4 +1,4 @@
-import { FLIP_CARD, COMPARE_CARD } from '../actionTypes.js';
+import { FLIP_CARD, COMPARE_CARD, CHOOSE_DECK, CHOOSE_DIFFICULTY } from '../actionTypes.js';
 
 const initialState = {
 	deck: [
@@ -40,9 +40,13 @@ const initialState = {
 		},
 	],
 	flipped: [],
+	remainingPairs: 3,
+	difficulty: 'easy',
+	deckType: 'deck1',
 };
 
 export default function(state = initialState, action) {
+	console.log(action);
 	switch (action.type) {
 		case FLIP_CARD: {
 			const { id } = action.payload;
@@ -65,6 +69,8 @@ export default function(state = initialState, action) {
 		case COMPARE_CARD: {
 			// Currently works but could be more elegant
 
+			let newPairs = state.remainingPairs;
+
 			// create a new deck object based on deck in state
 			const newDeck = [...state.deck];
 			// get the first card object
@@ -85,6 +91,7 @@ export default function(state = initialState, action) {
 						...state.deck[secondCard.id],
 						locked: true,
 					};
+					newPairs--;
 				} else {
 					// Set hidden for firstCard to true
 					newDeck[firstCard.id] = {
@@ -102,6 +109,25 @@ export default function(state = initialState, action) {
 				...state,
 				deck: newDeck,
 				flipped: [],
+				remainingPairs: newPairs,
+			};
+		}
+		case CHOOSE_DECK: {
+			console.log('choosing deck!');
+			const { deckName } = action.payload;
+			const newDeckType = deckName;
+			return {
+				...state,
+				deckType: newDeckType,
+			};
+		}
+		case CHOOSE_DIFFICULTY: {
+			console.log('choosing difficulty!');
+			const { difficultyLevel } = action.payload;
+			const newDifficulty = difficultyLevel;
+			return {
+				...state,
+				difficulty: newDifficulty,
 			};
 		}
 		default:
