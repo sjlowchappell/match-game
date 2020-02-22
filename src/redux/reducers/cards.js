@@ -63,7 +63,7 @@ export default function(state = initialState, action) {
 			};
 		}
 		case COMPARE_CARD: {
-			// everything works except if you click the same card twice, the compare vals are the same. Currently fixed so it works, except if you click really fast repeatedly, eventually it becomes undefined ( probably due to the set timeout )
+			// Currently works but could be more elegant
 
 			// create a new deck object based on deck in state
 			const newDeck = [...state.deck];
@@ -71,29 +71,32 @@ export default function(state = initialState, action) {
 			const firstCard = state.deck[state.flipped[0]];
 			// get the second card object
 			const secondCard = state.deck[state.flipped[1]];
-			// if the compare values are equal
-			if (firstCard.id !== secondCard.id && firstCard.compareVal === secondCard.compareVal) {
-				// Set locked for firstCard to true
-				newDeck[firstCard.id] = {
-					...state.deck[firstCard.id],
-					locked: true,
-				};
-				// Set locked for secondCard to true
-				newDeck[secondCard.id] = {
-					...state.deck[secondCard.id],
-					locked: true,
-				};
-			} else {
-				// Set hidden for firstCard to true
-				newDeck[firstCard.id] = {
-					...state.deck[firstCard.id],
-					hidden: true,
-				};
-				// Set hidden for secondCard to true
-				newDeck[secondCard.id] = {
-					...state.deck[secondCard.id],
-					hidden: true,
-				};
+			// check if secondCard exists (sometimes undefined due to set timeout)
+			if (secondCard) {
+				// if the compare values are equal and ids are different
+				if (firstCard.id !== secondCard.id && firstCard.compareVal === secondCard.compareVal) {
+					// Set locked for firstCard to true
+					newDeck[firstCard.id] = {
+						...state.deck[firstCard.id],
+						locked: true,
+					};
+					// Set locked for secondCard to true
+					newDeck[secondCard.id] = {
+						...state.deck[secondCard.id],
+						locked: true,
+					};
+				} else {
+					// Set hidden for firstCard to true
+					newDeck[firstCard.id] = {
+						...state.deck[firstCard.id],
+						hidden: true,
+					};
+					// Set hidden for secondCard to true
+					newDeck[secondCard.id] = {
+						...state.deck[secondCard.id],
+						hidden: true,
+					};
+				}
 			}
 			return {
 				...state,
