@@ -1,7 +1,6 @@
 import { FLIP_CARD } from '../actionTypes.js';
 
 const initialState = {
-	// allIds: [1, 2, 3, 4, 5, 6],
 	deck: [
 		{
 			id: 0,

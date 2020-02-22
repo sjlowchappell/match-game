@@ -4,20 +4,24 @@ import { flipCard } from '../redux/actions';
 
 interface CardProps {
 	image: string;
-	card: any;
+	card: {
+		locked: boolean;
+		compareVal: number;
+		hidden: boolean;
+		id: number;
+	};
 	flipCard: any;
 }
 
 const Card: FC<CardProps> = ({ card, flipCard }) => {
-	// console.log(card.id);
 	return (
 		<div>
-			{/* Button with handleClick method contains the image */}
+			{/* If a card has been matched already and locked is true, just show the card */}
 			{card.locked ? (
 				<p>{card.compareVal}</p>
 			) : (
+				// If the card has not been matched, render a button that can be clicked to flip the card
 				<button onClick={() => flipCard(card.id)}>
-					{/* {console.log(card.hidden)} */}
 					{/* Conditionally render the image based upon state */}
 					{card.hidden ? <p>Back Side</p> : <p>{card.compareVal}</p>}
 				</button>

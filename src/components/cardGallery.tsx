@@ -16,17 +16,15 @@ const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 	);
 };
 
-const mapStateToProps = (state: any) => {
+interface StateState {
+	cards: {
+		deck: [];
+	};
+}
+
+const mapStateToProps = (state: StateState) => {
 	const cards = state.cards.deck;
 	return { cards };
 };
 
 export default connect(mapStateToProps)(CardGallery);
-
-// console.log(state.cards);
-// const cards = state.cards.allIds.map((id: number) => {
-// 	return {
-// 		...state.cards.byIds[id],
-// 		id,
-// 	};
-// });

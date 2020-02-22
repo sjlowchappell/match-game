@@ -13,7 +13,6 @@ function App() {
 				<Timer />
 				<Modal />
 				<CardGallery />
-				{/* <Card image={'Fake Path'} /> */}
 			</Layout>
 		</div>
 	);
