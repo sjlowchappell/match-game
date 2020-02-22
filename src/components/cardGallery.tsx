@@ -12,7 +12,6 @@ const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 			{cards.deck.map((card: any, index: any) => {
 				return <Card key={`cardid-${index}`} card={card} image={'Fake'} flipped={cards.flipped} />;
 			})}
-			.
 		</div>
 	);
 };

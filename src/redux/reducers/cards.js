@@ -63,6 +63,8 @@ export default function(state = initialState, action) {
 			};
 		}
 		case COMPARE_CARD: {
+			// everything works except if you click the same card twice, the compare vals are the same. Currently fixed so it works, except if you click really fast repeatedly, eventually it becomes undefined ( probably due to the set timeout )
+
 			// create a new deck object based on deck in state
 			const newDeck = [...state.deck];
 			// get the first card object
@@ -70,7 +72,7 @@ export default function(state = initialState, action) {
 			// get the second card object
 			const secondCard = state.deck[state.flipped[1]];
 			// if the compare values are equal
-			if (firstCard.compareVal === secondCard.compareVal) {
+			if (firstCard.id !== secondCard.id && firstCard.compareVal === secondCard.compareVal) {
 				// Set locked for firstCard to true
 				newDeck[firstCard.id] = {
 					...state.deck[firstCard.id],
