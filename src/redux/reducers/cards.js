@@ -1,7 +1,7 @@
 import { FLIP_CARD, COMPARE_CARD } from '../actionTypes.js';
 
 const initialState = {
-	allIds: [1, 2, 3],
+	allIds: [1, 2, 3, 4, 5, 6],
 	byIds: {
 		1: {
 			hidden: true,
@@ -15,7 +15,20 @@ const initialState = {
 			hidden: true,
 			compareVal: 3,
 		},
+		4: {
+			hidden: true,
+			compareVal: 1,
+		},
+		5: {
+			hidden: true,
+			compareVal: 2,
+		},
+		6: {
+			hidden: true,
+			compareVal: 3,
+		},
 	},
+	compare: [],
 };
 
 export default function(state = initialState, action) {
@@ -27,6 +40,7 @@ export default function(state = initialState, action) {
 				byIds: {
 					...state.byIds,
 					[id]: {
+						...state.byIds[id],
 						hidden: !state.byIds[id].hidden,
 					},
 				},
