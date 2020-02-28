@@ -113,18 +113,16 @@ export default function(state = initialState, action) {
 		}
 		case CHOOSE_DECK: {
 			const { deckName } = action.payload;
-			const newDeckType = deckName;
 			return {
 				...state,
-				deckType: newDeckType,
+				deckType: deckName,
 			};
 		}
 		case CHOOSE_DIFFICULTY: {
 			const { difficultyLevel } = action.payload;
-			const newDifficulty = difficultyLevel;
 			return {
 				...state,
-				difficulty: newDifficulty,
+				difficulty: difficultyLevel,
 			};
 		}
 		default:
