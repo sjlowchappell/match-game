@@ -1,4 +1,4 @@
-import { FLIP_CARD, COMPARE_CARD, CHOOSE_DECK, CHOOSE_DIFFICULTY } from '../actionTypes.js';
+import { FLIP_CARD, COMPARE_CARD } from '../actionTypes.js';
 
 const initialState = {
 	deck: [
@@ -41,8 +41,6 @@ const initialState = {
 	],
 	flipped: [],
 	remainingPairs: 3,
-	difficulty: 'easy',
-	deckType: 'deck1',
 };
 
 export default function(state = initialState, action) {
@@ -109,20 +107,6 @@ export default function(state = initialState, action) {
 				deck: newDeck,
 				flipped: [],
 				remainingPairs: newPairs,
-			};
-		}
-		case CHOOSE_DECK: {
-			const { deckName } = action.payload;
-			return {
-				...state,
-				deckType: deckName,
-			};
-		}
-		case CHOOSE_DIFFICULTY: {
-			const { difficultyLevel } = action.payload;
-			return {
-				...state,
-				difficulty: difficultyLevel,
 			};
 		}
 		default:

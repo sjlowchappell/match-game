@@ -5,13 +5,19 @@ import { chooseDifficulty, chooseDeck } from '../redux/actions';
 interface ModalProps {
 	chooseDeck: any;
 	chooseDifficulty: any;
-	cards: {
-		difficulty: string;
-		deckType: string;
-	};
+	state: any;
+	// state: {
+	// 	cards: {
+	// 		difficulty: string;
+	// 		// deckType: string;
+	// 	};
+	// 	decks: {
+	// 		deckType: string;
+	// 	};
+	// };
 }
 
-const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, cards }) => {
+const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, state }) => {
 	return (
 		<div>
 			<h2>Welcome to Match Game!</h2>
@@ -21,14 +27,14 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, cards }) => {
 				accusantium consectetur, fugiat laudantium totam quibusdam voluptatem illum aut adipisci laborum nisi
 				fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
 			</p>
-			<h2>Current deck: {cards.deckType} </h2>
+			<h2>Current deck: {state.decks.deckType} </h2>
 			<h3>Change deck:</h3>
 			<div>
 				<button onClick={() => chooseDeck('deck1')}>Deck 1</button>
 				<button onClick={() => chooseDeck('deck2')}>Deck 2</button>
 				<button onClick={() => chooseDeck('deck3')}>Deck 3</button>
 			</div>
-			<h2>Current difficulty: {cards.difficulty}</h2>
+			<h2>Current difficulty: {state.difficulty.difficulty}</h2>
 			<h3>Change difficulty:</h3>
 			<div>
 				<button onClick={() => chooseDifficulty('easy')}>Easy</button>
@@ -45,8 +51,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state: ModalProps) => {
-	const cards = state.cards;
-	return { cards };
+	console.log(state);
+	return { state };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
