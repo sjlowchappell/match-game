@@ -11,49 +11,41 @@ interface TimerProps {
 	state: any;
 }
 
-const Timer: FC<TimerProps> = ({ state, incrementTimer }) => {
-	const timerVal = state.game.timer;
+const Timer: FC<TimerProps> = ({ state, incrementTimer, endGame }) => {
+	// console.log(state.game);
+	// return <p>Timer component</p>;
+	// const timerLogic = () => {
+	// 	if (timerVal >= 0 && remainingPairs === 0) {
+	// 		endGame(true);
+	// 	} else if (playing && timerVal <= 0) {
+	// 		endGame(false);
+	// 	} else {
+	// 		setTimeout(incrementTimer, 1000);
+	// 	}
+	// };
+	const timerVal = state.game.time;
 	const remainingPairs = state.cards.remainingPairs;
 	const playing = state.game.playing;
 	const victory = state.game.victory;
-	let seconds = 0;
+	console.log(victory);
 
-	// let myTimer;
+	if (playing) {
+		if (timerVal >= 0 && remainingPairs === 0) {
+			endGame(true);
+		} else if (timerVal <= 0) {
+			endGame(false);
+		} else {
+			setTimeout(incrementTimer, 1000);
+		}
+	}
 
-	// const timer = setInterval(() => {
-	// 	console.log(timerVal);
-	// 	incrementTimer();
-	// }, 1000);
-
-	// if (playing) {
-	// 	const myTimer = setInterval(() => {
-	// 		console.log(`Outer playing: ${playing}`);
-	// 		console.log(`Inner Playing ${playing}`);
-	// 		if (!playing) {
-	// 			console.log('timer stopped!');
-	// 			clearInterval(myTimer);
-	// 		}
-	// 	}, 1000);
-	// 	// myTimer = setInterval(() => {
-	// 	// 	console.log(`Playing for ${seconds} seconds`);
-	// 	// 	seconds++;
-	// 	// }, 1000);
-	// }
-	// while (playing) {
-	// 	// 	if (timerVal >= 0 && remainingPairs === 0) {
-	// 	// 		endGame(true);
-	// 	// 	} else if (timerVal <= 0) {
-	// 	// 		endGame(false);
-	// 	// 	} else {
-
-	// 	// 	}
-	// }
 	return (
 		<div>
 			<p>Time Remaining:</p>
 			<span>0:{timerVal}</span>
-			<span>Victory? {victory}</span>
-			<button onClick={() => incrementTimer()}>Increment</button>
+			<span>Victory?</span>
+			{victory ? <p>You win!</p> : <p>You lose!</p>}
+			{/* <button onClick={() => incrementTimer()}>Increment</button> */}
 		</div>
 	);
 };

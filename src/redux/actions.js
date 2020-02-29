@@ -34,7 +34,6 @@ export const startTimer = () => ({
 	type: START_TIMER,
 	payload: {
 		offset: Date.now(),
-		interval,
 	},
 });
 
