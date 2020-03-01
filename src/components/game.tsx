@@ -2,17 +2,19 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import CardGallery from './cardGallery';
 import Timer from './timer';
-import { resetTimer, stopTimer, pauseGame, endGame } from '../redux/actions';
+import { resetTimer, stopTimer, pauseGame, endGame, resetGame } from '../redux/actions';
 
 interface GameProps {
 	pauseGame: any;
 	endGame: any;
 	stopTimer: any;
 	resetTimer: any;
+	resetGame: any;
 	state: any;
 }
 
-const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame }) => {
+const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame, resetGame }) => {
+	// Game win conditions
 	// if playing is set to true
 	if (state.game.playing) {
 		// check if the timer is greater than 0 and there are no remaining pairs
@@ -43,6 +45,11 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame 
 		// dispatch the stop timer action
 		stopTimer();
 	};
+	const reset = () => {
+		console.log('Reset clicked! Reset it all!');
+		resetTimer();
+		resetGame();
+	};
 	return (
 		<div>
 			<p>This is the game container</p>
@@ -59,6 +66,7 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame 
 			{/* Pause buttons */}
 			{/* When clicking pause, it should bring up the modal */}
 			<button onClick={pause}>Pause</button>
+			<button onClick={reset}>Reset</button>
 			{/* Display remaining pairs of cards */}
 			<p>Remaining pairs: {state.cards.remainingPairs}</p>
 			{/* Card Gallery Component */}
@@ -72,6 +80,7 @@ const mapDispatchToProps = {
 	endGame,
 	stopTimer,
 	resetTimer,
+	resetGame,
 };
 
 const mapStateToProps = (state: any) => {

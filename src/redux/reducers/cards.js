@@ -1,4 +1,4 @@
-import { FLIP_CARD, COMPARE_CARD } from '../actionTypes.js';
+import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes.js';
 
 const initialState = {
 	deck: [
@@ -107,6 +107,11 @@ export default function(state = initialState, action) {
 				deck: newDeck,
 				flipped: [],
 				remainingPairs: newPairs,
+			};
+		}
+		case RESET_GAME: {
+			return {
+				...initialState,
 			};
 		}
 		default:

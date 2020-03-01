@@ -1,4 +1,4 @@
-import { START_GAME, PAUSE_GAME, END_GAME } from '../actionTypes.js';
+import { START_GAME, PAUSE_GAME, END_GAME, RESET_GAME } from '../actionTypes.js';
 
 const initialState = {
 	playing: false,
@@ -25,6 +25,11 @@ export default function(state = initialState, action) {
 				...state,
 				playing: false,
 				victory: action.payload.endType,
+			};
+		}
+		case RESET_GAME: {
+			return {
+				...initialState,
 			};
 		}
 		default:

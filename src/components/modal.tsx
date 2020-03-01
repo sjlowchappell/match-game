@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { chooseDifficulty, chooseDeck, startGame, startTimer, tick } from '../redux/actions';
+import { chooseDifficulty, chooseDeck, startGame, startTimer, resetTimer, tick, resetGame } from '../redux/actions';
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
 	playing: boolean;
+	victory: boolean;
 }
 const Container = styled.div<ContainerProps>`
 	position: fixed;
@@ -17,8 +18,9 @@ const Container = styled.div<ContainerProps>`
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
+	padding-top: 50px;
 	${props =>
-		props.playing &&
+		(props.playing || props.victory !== null) &&
 		css`
 			display: none;
 		`}
@@ -37,11 +39,22 @@ interface ModalProps {
 	chooseDifficulty: any;
 	startGame: any;
 	startTimer: any;
+	resetTimer: any;
+	resetGame: any;
 	tick: any;
 	state: any;
 }
 
-const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state, startTimer, tick }) => {
+const Modal: FC<ModalProps> = ({
+	chooseDeck,
+	chooseDifficulty,
+	startGame,
+	state,
+	startTimer,
+	resetTimer,
+	tick,
+	resetGame,
+}) => {
 	const start = () => {
 		console.log('Game is starting, close the modal!');
 		// Container style display none -> figure out how to do this
@@ -51,8 +64,13 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state,
 		});
 		startTimer(interval);
 	};
+	const reset = () => {
+		console.log('Reset clicked! Reset it all!');
+		resetTimer();
+		resetGame();
+	};
 	return (
-		<Container playing={state.game.playing}>
+		<Container playing={state.game.playing} victory={state.game.victory}>
 			<Content>
 				<h2>Welcome to Match Game!</h2>
 				<h3>Rules:</h3>
@@ -61,6 +79,7 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state,
 					accusantium consectetur, fugiat laudantium totam quibusdam voluptatem illum aut adipisci laborum
 					nisi fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
 				</p>
+				{/* this can be extracted into a component and reused for both decks and difficulty */}
 				<h2>Current deck: {state.decks.deckType} </h2>
 				<h3>Change deck:</h3>
 				<div>
@@ -78,6 +97,7 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state,
 
 				{/* Play button should start the game */}
 				<button onClick={start}>Play</button>
+				<button onClick={reset}>Reset</button>
 			</Content>
 		</Container>
 	);
@@ -88,6 +108,8 @@ const mapDispatchToProps = {
 	chooseDeck,
 	startGame,
 	startTimer,
+	resetGame,
+	resetTimer,
 	tick,
 };
 

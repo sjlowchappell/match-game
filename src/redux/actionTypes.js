@@ -9,3 +9,4 @@ export const RESET_TIMER = 'RESET_TIMER';
 export const START_GAME = 'START_GAME';
 export const PAUSE_GAME = 'PAUSE_GAME';
 export const END_GAME = 'END_GAME';
+export const RESET_GAME = 'RESET_GAME';

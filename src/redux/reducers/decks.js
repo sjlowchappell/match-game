@@ -1,4 +1,4 @@
-import { CHOOSE_DECK } from '../actionTypes.js';
+import { CHOOSE_DECK, RESET_GAME } from '../actionTypes.js';
 
 const initialState = {
 	deckType: 'deck1',
@@ -11,6 +11,11 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				deckType: deckName,
+			};
+		}
+		case RESET_GAME: {
+			return {
+				...initialState,
 			};
 		}
 		default:

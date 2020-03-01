@@ -10,6 +10,7 @@ import {
 	START_TIMER,
 	STOP_TIMER,
 	RESET_TIMER,
+	RESET_GAME,
 } from './actionTypes';
 
 // Card Actions
@@ -70,4 +71,8 @@ export const pauseGame = () => ({
 export const endGame = endType => ({
 	type: END_GAME,
 	payload: { endType },
+});
+
+export const resetGame = () => ({
+	type: RESET_GAME,
 });

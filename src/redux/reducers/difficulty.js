@@ -1,4 +1,4 @@
-import { CHOOSE_DIFFICULTY } from '../actionTypes.js';
+import { CHOOSE_DIFFICULTY, RESET_GAME } from '../actionTypes.js';
 
 const initialState = {
 	difficulty: 'easy',
@@ -11,6 +11,11 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				difficulty: difficultyLevel,
+			};
+		}
+		case RESET_GAME: {
+			return {
+				...initialState,
 			};
 		}
 		default:
