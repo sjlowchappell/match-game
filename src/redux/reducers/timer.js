@@ -2,7 +2,7 @@ import { START_TIMER, TICK, STOP_TIMER, RESET_TIMER } from '../actionTypes.js';
 
 const initialState = {
 	isOn: false,
-	time: 0,
+	time: 30000,
 };
 
 export default function(state = initialState, action) {
@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
 			const { time } = action.payload;
 			return {
 				...state,
-				time: state.time + (time - state.offset),
+				time: state.time - (time - state.offset),
 				offset: time,
 			};
 		}
