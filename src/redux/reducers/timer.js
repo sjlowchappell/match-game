@@ -21,6 +21,7 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				time: state.time + (time - state.offset),
+				offset: time,
 			};
 		}
 		case STOP_TIMER: {
