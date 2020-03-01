@@ -1,27 +1,14 @@
 import React, { FC } from 'react';
-import { startTimer, tick, stopTimer, resetTimer } from '../redux/actions';
+import { stopTimer, resetTimer } from '../redux/actions';
 import { connect } from 'react-redux';
 
 interface TimerProps {
-	// timerVal: number;
-	// remainingPairs: number;
-	// playing: boolean;
-	// endGame: any;
-	// incrementTimer: any;
-	startTimer: any;
-	tick: any;
 	stopTimer: any;
 	timer: any;
 	resetTimer: any;
 }
 
-const Timer: FC<TimerProps> = ({ timer, startTimer, tick, stopTimer, resetTimer }) => {
-	const start = () => {
-		const interval = setInterval(() => {
-			tick();
-		});
-		startTimer(interval);
-	};
+const Timer: FC<TimerProps> = ({ timer, stopTimer, resetTimer }) => {
 	const stop = () => {
 		stopTimer();
 	};
@@ -48,7 +35,7 @@ const Timer: FC<TimerProps> = ({ timer, startTimer, tick, stopTimer, resetTimer 
 			<p>Time Remaining: {format(timer.time)}</p>
 			{/* <span>0:{timer.time}</span> */}
 			<span>Victory?</span>
-			<button onClick={start}>Start</button>
+			{/* <button onClick={start}>Start</button> */}
 			<button onClick={stop}>Stop</button>
 			<button onClick={reset}>Reset</button>
 		</div>
@@ -58,8 +45,6 @@ const Timer: FC<TimerProps> = ({ timer, startTimer, tick, stopTimer, resetTimer 
 // export default Timer;
 
 const mapDispatchToProps = {
-	startTimer,
-	tick,
 	stopTimer,
 	resetTimer,
 };

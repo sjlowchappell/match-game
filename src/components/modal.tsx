@@ -1,24 +1,24 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { chooseDifficulty, chooseDeck, startGame } from '../redux/actions';
+import { chooseDifficulty, chooseDeck, startGame, startTimer, tick } from '../redux/actions';
 
 interface ModalProps {
 	chooseDeck: any;
 	chooseDifficulty: any;
 	startGame: any;
+	startTimer: any;
+	tick: any;
 	state: any;
-	// state: {
-	// 	cards: {
-	// 		difficulty: string;
-	// 		// deckType: string;
-	// 	};
-	// 	decks: {
-	// 		deckType: string;
-	// 	};
-	// };
 }
 
-const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state }) => {
+const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state, startTimer, tick }) => {
+	const start = () => {
+		startGame();
+		const interval = setInterval(() => {
+			tick();
+		});
+		startTimer(interval);
+	};
 	return (
 		<div>
 			<h2>Welcome to Match Game!</h2>
@@ -44,7 +44,7 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state 
 			</div>
 
 			{/* Play button should start the game */}
-			<button onClick={startGame}>Play</button>
+			<button onClick={start}>Play</button>
 		</div>
 	);
 };
@@ -53,10 +53,11 @@ const mapDispatchToProps = {
 	chooseDifficulty,
 	chooseDeck,
 	startGame,
+	startTimer,
+	tick,
 };
 
 const mapStateToProps = (state: ModalProps) => {
-	// console.log(state);
 	return { state };
 };
 
