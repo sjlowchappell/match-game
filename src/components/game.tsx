@@ -52,7 +52,6 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame,
 	};
 	return (
 		<div>
-			<p>This is the game container</p>
 			{/* Timer Component */}
 			<Timer />
 			{/* if no victory boolean, put general statement. otherwise display win or loss */}

@@ -64,6 +64,7 @@ const Modal: FC<ModalProps> = ({
 		});
 		startTimer(interval);
 	};
+	// can pull this out as a helper function as it is used here and in the game
 	const reset = () => {
 		console.log('Reset clicked! Reset it all!');
 		resetTimer();
@@ -113,6 +114,7 @@ const mapDispatchToProps = {
 	tick,
 };
 
+// need to figure out how best to extract state here
 const mapStateToProps = (state: ModalProps) => {
 	return { state };
 };
