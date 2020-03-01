@@ -1,6 +1,36 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { chooseDifficulty, chooseDeck, startGame, startTimer, tick } from '../redux/actions';
+import styled, { css } from 'styled-components';
+
+interface ContainerProps {
+	playing: boolean;
+}
+const Container = styled.div<ContainerProps>`
+	position: fixed;
+	display: block;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+	${props =>
+		props.playing &&
+		css`
+			display: none;
+		`}
+`;
+
+const Content = styled.div`
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+`;
 
 interface ModalProps {
 	chooseDeck: any;
@@ -14,6 +44,7 @@ interface ModalProps {
 const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state, startTimer, tick }) => {
 	const start = () => {
 		console.log('Game is starting, close the modal!');
+		// Container style display none -> figure out how to do this
 		startGame();
 		const interval = setInterval(() => {
 			tick();
@@ -21,32 +52,34 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state,
 		startTimer(interval);
 	};
 	return (
-		<div>
-			{/* <h2>Welcome to Match Game!</h2>
-			<h3>Rules:</h3>
-			<p>
-				Here are the rules ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eos
-				accusantium consectetur, fugiat laudantium totam quibusdam voluptatem illum aut adipisci laborum nisi
-				fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
-			</p>
-			<h2>Current deck: {state.decks.deckType} </h2>
-			<h3>Change deck:</h3>
-			<div>
-				<button onClick={() => chooseDeck('deck1')}>Deck 1</button>
-				<button onClick={() => chooseDeck('deck2')}>Deck 2</button>
-				<button onClick={() => chooseDeck('deck3')}>Deck 3</button>
-			</div>
-			<h2>Current difficulty: {state.difficulty.difficulty}</h2>
-			<h3>Change difficulty:</h3>
-			<div>
-				<button onClick={() => chooseDifficulty('easy')}>Easy</button>
-				<button onClick={() => chooseDifficulty('medium')}>Medium</button>
-				<button onClick={() => chooseDifficulty('hard')}>Hard</button>
-			</div> */}
+		<Container playing={state.game.playing}>
+			<Content>
+				<h2>Welcome to Match Game!</h2>
+				<h3>Rules:</h3>
+				<p>
+					Here are the rules ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eos
+					accusantium consectetur, fugiat laudantium totam quibusdam voluptatem illum aut adipisci laborum
+					nisi fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
+				</p>
+				<h2>Current deck: {state.decks.deckType} </h2>
+				<h3>Change deck:</h3>
+				<div>
+					<button onClick={() => chooseDeck('deck1')}>Deck 1</button>
+					<button onClick={() => chooseDeck('deck2')}>Deck 2</button>
+					<button onClick={() => chooseDeck('deck3')}>Deck 3</button>
+				</div>
+				<h2>Current difficulty: {state.difficulty.difficulty}</h2>
+				<h3>Change difficulty:</h3>
+				<div>
+					<button onClick={() => chooseDifficulty('easy')}>Easy</button>
+					<button onClick={() => chooseDifficulty('medium')}>Medium</button>
+					<button onClick={() => chooseDifficulty('hard')}>Hard</button>
+				</div>
 
-			{/* Play button should start the game */}
-			<button onClick={start}>Play</button>
-		</div>
+				{/* Play button should start the game */}
+				<button onClick={start}>Play</button>
+			</Content>
+		</Container>
 	);
 };
 
