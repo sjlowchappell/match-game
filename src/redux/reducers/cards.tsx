@@ -1,7 +1,14 @@
 import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes';
 
+interface Card {
+	id: number;
+	hidden: boolean;
+	compareVal: number;
+	locked: boolean;
+}
+
 interface CardsState {
-	deck: [];
+	deck: Card[];
 	flipped: number[];
 	remainingPairs: number;
 }
@@ -12,7 +19,7 @@ interface ActionState {
 	};
 }
 
-const initialState = {
+const initialState: CardsState = {
 	deck: [
 		{
 			id: 0,

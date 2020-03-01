@@ -17,7 +17,7 @@ interface ActionState {
 
 const initialState: TimerState = {
 	isOn: false,
-	time: 3000,
+	time: 30000,
 	offset: 0,
 	interval: 0,
 };
