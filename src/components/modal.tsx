@@ -13,6 +13,7 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state, startTimer, tick }) => {
 	const start = () => {
+		console.log('Game is starting, close the modal!');
 		startGame();
 		const interval = setInterval(() => {
 			tick();

@@ -6,17 +6,13 @@ interface CardGalleryProps {
 	cards: {
 		deck: [];
 		flipped: [];
-		remainingPairs: number;
 	};
 }
 
 const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 	return (
 		<div>
-			{/* TODO: Move remaining pairs to the timer component maybe? idk */}
-			{/* if remaining pairs reaches 0, trigger a You Win! Popup */}
-			{/* If Timer reaches 0 and remaining pairs > 0, trigger a You Lose Popup */}
-			<p>Remaining pairs: {cards.remainingPairs}</p>
+			{/* go through deck and return a new card component for each card */}
 			{cards.deck.map((card: any, index: any) => {
 				return <Card key={`cardid-${index}`} card={card} image={'Fake'} flipped={cards.flipped} />;
 			})}
