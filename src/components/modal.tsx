@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
 	playing: boolean;
-	victory: boolean;
 }
 const Container = styled.div<ContainerProps>`
 	position: fixed;
@@ -20,7 +19,7 @@ const Container = styled.div<ContainerProps>`
 	background-color: rgba(0, 0, 0, 0.4);
 	padding-top: 50px;
 	${props =>
-		(props.playing || props.victory !== null) &&
+		props.playing &&
 		css`
 			display: none;
 		`}
@@ -71,7 +70,7 @@ const Modal: FC<ModalProps> = ({
 		resetGame();
 	};
 	return (
-		<Container playing={state.game.playing} victory={state.game.victory}>
+		<Container playing={state.game.playing}>
 			<Content>
 				<h2>Welcome to Match Game!</h2>
 				<h3>Rules:</h3>
@@ -81,6 +80,14 @@ const Modal: FC<ModalProps> = ({
 					nisi fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
 				</p>
 				{/* this can be extracted into a component and reused for both decks and difficulty */}
+				{/* if no victory boolean, put general statement. otherwise display win or loss */}
+				{state.game.victory === false ? (
+					<p>Will you win?</p>
+				) : state.game.victory ? (
+					<p>You win!</p>
+				) : (
+					<p>You lose...</p>
+				)}
 				<h2>Current deck: {state.decks.deckType} </h2>
 				<h3>Change deck:</h3>
 				<div>

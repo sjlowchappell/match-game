@@ -1,11 +1,28 @@
-import { START_TIMER, TICK, STOP_TIMER, RESET_TIMER } from '../actionTypes.tsx';
+import { START_TIMER, TICK, STOP_TIMER, RESET_TIMER } from '../actionTypes';
 
-const initialState = {
+interface TimerState {
+	isOn: boolean;
+	time: number;
+	offset: number;
+	interval: number;
+}
+interface ActionState {
+	type: string;
+	payload: {
+		offset: number;
+		interval: number;
+		time: number;
+	};
+}
+
+const initialState: TimerState = {
 	isOn: false,
 	time: 30000,
+	offset: 0,
+	interval: 0,
 };
 
-export default function(state = initialState, action) {
+export default function(state = initialState, action: ActionState) {
 	switch (action.type) {
 		case START_TIMER: {
 			const { offset, interval } = action.payload;

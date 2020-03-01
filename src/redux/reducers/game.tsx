@@ -1,12 +1,22 @@
-import { START_GAME, PAUSE_GAME, END_GAME, RESET_GAME } from '../actionTypes.tsx';
+import { START_GAME, PAUSE_GAME, END_GAME, RESET_GAME } from '../actionTypes';
 
-const initialState = {
+interface GameState {
+	playing: boolean;
+	victory: boolean;
+}
+interface ActionState {
+	type: string;
+	payload: {
+		endType: boolean;
+	};
+}
+
+const initialState: GameState = {
 	playing: false,
-	victory: null,
-	time: 30,
+	victory: false,
 };
 
-export default function(state = initialState, action) {
+export default function(state = initialState, action: ActionState) {
 	switch (action.type) {
 		case START_GAME: {
 			return {

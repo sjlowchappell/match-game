@@ -54,14 +54,7 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame,
 		<div>
 			{/* Timer Component */}
 			<Timer />
-			{/* if no victory boolean, put general statement. otherwise display win or loss */}
-			{state.game.victory === null ? (
-				<p>Will you win?</p>
-			) : state.game.victory ? (
-				<p>You win!</p>
-			) : (
-				<p>You lose...</p>
-			)}
+
 			{/* Pause buttons */}
 			{/* When clicking pause, it should bring up the modal */}
 			<button onClick={pause}>Pause</button>
