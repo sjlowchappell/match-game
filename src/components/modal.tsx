@@ -81,6 +81,7 @@ const Modal: FC<ModalProps> = ({
 				</p>
 				{/* this can be extracted into a component and reused for both decks and difficulty */}
 				{/* if no victory boolean, put general statement. otherwise display win or loss */}
+				{/* this is broken now that I can't have a null value for victory, need to fix the conditional later */}
 				{state.game.victory === false ? (
 					<p>Will you win?</p>
 				) : state.game.victory ? (
