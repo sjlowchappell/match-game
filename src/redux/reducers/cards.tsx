@@ -1,4 +1,16 @@
-import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes.tsx';
+import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes';
+
+interface CardsState {
+	deck: [];
+	flipped: number[];
+	remainingPairs: number;
+}
+interface ActionState {
+	type: string;
+	payload: {
+		id: any;
+	};
+}
 
 const initialState = {
 	deck: [
@@ -43,7 +55,7 @@ const initialState = {
 	remainingPairs: 3,
 };
 
-export default function(state = initialState, action) {
+export default function(state = initialState, action: ActionState) {
 	switch (action.type) {
 		case FLIP_CARD: {
 			const { id } = action.payload;
@@ -53,7 +65,7 @@ export default function(state = initialState, action) {
 				hidden: !state.deck[id].hidden,
 			};
 
-			const newFlipped = [...state.flipped];
+			const newFlipped: number[] = [...state.flipped];
 
 			newFlipped.push(id);
 
