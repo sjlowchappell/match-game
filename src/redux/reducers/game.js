@@ -1,4 +1,4 @@
-import { START_GAME, PAUSE_GAME, END_GAME, INCREMENT_TIMER } from '../actionTypes.js';
+import { START_GAME, PAUSE_GAME, END_GAME } from '../actionTypes.js';
 
 const initialState = {
 	playing: false,
@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-	console.log(action.type);
 	switch (action.type) {
 		case START_GAME: {
 			return {
@@ -26,14 +25,6 @@ export default function(state = initialState, action) {
 				...state,
 				playing: false,
 				victory: action.payload.endType,
-			};
-		}
-		case INCREMENT_TIMER: {
-			let timerVal = state.time;
-			timerVal--;
-			return {
-				...state,
-				time: timerVal,
 			};
 		}
 		default:

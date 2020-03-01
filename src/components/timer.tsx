@@ -1,51 +1,56 @@
 import React, { FC } from 'react';
-import { endGame, incrementTimer } from '../redux/actions';
+import { startTimer, tick, stopTimer, resetTimer } from '../redux/actions';
 import { connect } from 'react-redux';
 
 interface TimerProps {
 	// timerVal: number;
 	// remainingPairs: number;
 	// playing: boolean;
-	endGame: any;
-	incrementTimer: any;
-	state: any;
+	// endGame: any;
+	// incrementTimer: any;
+	startTimer: any;
+	tick: any;
+	stopTimer: any;
+	timer: any;
+	resetTimer: any;
 }
 
-const Timer: FC<TimerProps> = ({ state, incrementTimer, endGame }) => {
-	// console.log(state.game);
-	// return <p>Timer component</p>;
-	// const timerLogic = () => {
-	// 	if (timerVal >= 0 && remainingPairs === 0) {
-	// 		endGame(true);
-	// 	} else if (playing && timerVal <= 0) {
-	// 		endGame(false);
-	// 	} else {
-	// 		setTimeout(incrementTimer, 1000);
-	// 	}
-	// };
-	const timerVal = state.game.time;
-	const remainingPairs = state.cards.remainingPairs;
-	const playing = state.game.playing;
-	const victory = state.game.victory;
-	console.log(victory);
+const Timer: FC<TimerProps> = ({ timer, startTimer, tick, stopTimer, resetTimer }) => {
+	const start = () => {
+		const interval = setInterval(() => {
+			tick();
+		});
+		startTimer(interval);
+	};
+	const stop = () => {
+		stopTimer();
+	};
+	const reset = () => {
+		resetTimer();
+	};
+	const format = (time: any) => {
+		const pad = (time: any, length: any) => {
+			while (time.length < length) {
+				time = '0' + time;
+			}
+			return time;
+		};
 
-	if (playing) {
-		if (timerVal >= 0 && remainingPairs === 0) {
-			endGame(true);
-		} else if (timerVal <= 0) {
-			endGame(false);
-		} else {
-			setTimeout(incrementTimer, 1000);
-		}
-	}
+		time = new Date(time);
+		let m = pad(time.getMinutes().toString(), 2);
+		let s = pad(time.getSeconds().toString(), 2);
+		let ms = pad(time.getMilliseconds().toString(), 3);
 
+		return `${m} : ${s} . ${ms}`;
+	};
 	return (
 		<div>
-			<p>Time Remaining:</p>
-			<span>0:{timerVal}</span>
+			<p>Time Remaining: {format(timer.time)}</p>
+			{/* <span>0:{timer.time}</span> */}
 			<span>Victory?</span>
-			{victory ? <p>You win!</p> : <p>You lose!</p>}
-			{/* <button onClick={() => incrementTimer()}>Increment</button> */}
+			<button onClick={start}>Start</button>
+			<button onClick={stop}>Stop</button>
+			<button onClick={reset}>Reset</button>
 		</div>
 	);
 };
@@ -53,13 +58,15 @@ const Timer: FC<TimerProps> = ({ state, incrementTimer, endGame }) => {
 // export default Timer;
 
 const mapDispatchToProps = {
-	endGame,
-	incrementTimer,
+	startTimer,
+	tick,
+	stopTimer,
+	resetTimer,
 };
 
 const mapStateToProps = (state: any) => {
-	console.log(state);
-	return { state };
+	const timer = state.timer;
+	return { timer };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
