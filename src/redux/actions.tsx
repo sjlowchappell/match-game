@@ -14,7 +14,7 @@ import {
 } from './actionTypes';
 
 // Card Actions
-export const flipCard = id => ({
+export const flipCard = (id: number) => ({
 	type: FLIP_CARD,
 	payload: { id },
 });
@@ -25,19 +25,19 @@ export const compareCard = () => ({
 
 // Modal Actions
 
-export const chooseDeck = deckName => ({
+export const chooseDeck = (deckName: string) => ({
 	type: CHOOSE_DECK,
 	payload: { deckName },
 });
 
-export const chooseDifficulty = difficultyLevel => ({
+export const chooseDifficulty = (difficultyLevel: string) => ({
 	type: CHOOSE_DIFFICULTY,
 	payload: { difficultyLevel },
 });
 
 // Timer Actions
 
-export const startTimer = interval => ({
+export const startTimer = (interval: number) => ({
 	type: START_TIMER,
 	payload: {
 		offset: Date.now(),
@@ -68,7 +68,7 @@ export const startGame = () => ({
 export const pauseGame = () => ({
 	type: PAUSE_GAME,
 });
-export const endGame = endType => ({
+export const endGame = (endType: boolean) => ({
 	type: END_GAME,
 	payload: { endType },
 });
