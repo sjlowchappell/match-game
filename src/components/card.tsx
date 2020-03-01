@@ -10,8 +10,8 @@ interface CardProps {
 		hidden: boolean;
 		id: number;
 	};
-	flipCard: any;
-	compareCard: any;
+	flipCard: (id: number) => void;
+	compareCard: () => void;
 	flipped: [];
 }
 

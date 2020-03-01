@@ -35,13 +35,13 @@ const Content = styled.div`
 `;
 
 interface ModalProps {
-	chooseDeck: any;
-	chooseDifficulty: any;
-	startGame: any;
-	startTimer: any;
-	resetTimer: any;
-	resetGame: any;
-	tick: any;
+	chooseDeck: (deckName: string) => void;
+	chooseDifficulty: (difficulty: string) => void;
+	startGame: () => void;
+	startTimer: (interval: number) => void;
+	resetTimer: () => void;
+	resetGame: () => void;
+	tick: () => void;
 	state: any;
 }
 

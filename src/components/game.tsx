@@ -5,11 +5,11 @@ import Timer from './timer';
 import { resetTimer, stopTimer, pauseGame, endGame, resetGame } from '../redux/actions';
 
 interface GameProps {
-	pauseGame: any;
-	endGame: any;
-	stopTimer: any;
-	resetTimer: any;
-	resetGame: any;
+	endGame: (endType: boolean) => void;
+	pauseGame: () => void;
+	stopTimer: () => void;
+	resetTimer: () => void;
+	resetGame: () => void;
 	state: any;
 }
 
