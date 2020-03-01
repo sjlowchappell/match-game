@@ -32,6 +32,7 @@ export default function(state = initialState, action) {
 			};
 		}
 		case RESET_TIMER: {
+			clearInterval(state.interval);
 			return {
 				...initialState,
 			};

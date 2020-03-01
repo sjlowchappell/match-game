@@ -21,7 +21,7 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state,
 	};
 	return (
 		<div>
-			<h2>Welcome to Match Game!</h2>
+			{/* <h2>Welcome to Match Game!</h2>
 			<h3>Rules:</h3>
 			<p>
 				Here are the rules ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eos
@@ -41,7 +41,7 @@ const Modal: FC<ModalProps> = ({ chooseDeck, chooseDifficulty, startGame, state,
 				<button onClick={() => chooseDifficulty('easy')}>Easy</button>
 				<button onClick={() => chooseDifficulty('medium')}>Medium</button>
 				<button onClick={() => chooseDifficulty('hard')}>Hard</button>
-			</div>
+			</div> */}
 
 			{/* Play button should start the game */}
 			<button onClick={start}>Play</button>
