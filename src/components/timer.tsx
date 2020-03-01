@@ -1,20 +1,13 @@
 import React, { FC } from 'react';
-import { stopTimer, resetTimer } from '../redux/actions';
 import { connect } from 'react-redux';
 
 interface TimerProps {
-	stopTimer: any;
-	timer: any;
-	resetTimer: any;
+	timer: {
+		time: number;
+	};
 }
 
-const Timer: FC<TimerProps> = ({ timer, stopTimer, resetTimer }) => {
-	const stop = () => {
-		stopTimer();
-	};
-	const reset = () => {
-		resetTimer();
-	};
+const Timer: FC<TimerProps> = ({ timer }) => {
 	const format = (time: any) => {
 		const pad = (time: any, length: any) => {
 			while (time.length < length) {
@@ -33,17 +26,8 @@ const Timer: FC<TimerProps> = ({ timer, stopTimer, resetTimer }) => {
 	return (
 		<div>
 			<p>Time Remaining: {format(timer.time)}</p>
-			<button onClick={stop}>Stop</button>
-			<button onClick={reset}>Reset</button>
 		</div>
 	);
-};
-
-// export default Timer;
-
-const mapDispatchToProps = {
-	stopTimer,
-	resetTimer,
 };
 
 const mapStateToProps = (state: any) => {
@@ -51,4 +35,4 @@ const mapStateToProps = (state: any) => {
 	return { timer };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Timer);
+export default connect(mapStateToProps)(Timer);
