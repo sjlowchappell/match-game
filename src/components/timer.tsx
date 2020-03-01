@@ -33,9 +33,6 @@ const Timer: FC<TimerProps> = ({ timer, stopTimer, resetTimer }) => {
 	return (
 		<div>
 			<p>Time Remaining: {format(timer.time)}</p>
-			{/* <span>0:{timer.time}</span> */}
-			<span>Victory?</span>
-			{/* <button onClick={start}>Start</button> */}
 			<button onClick={stop}>Stop</button>
 			<button onClick={reset}>Reset</button>
 		</div>

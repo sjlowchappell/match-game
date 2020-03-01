@@ -18,12 +18,10 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame 
 		if (state.timer.time >= 0 && state.cards.remainingPairs === 0) {
 			console.log('you won!');
 			endGame(true);
-			// stop timer
 			stopTimer();
 		} else if (state.timer.time <= 0) {
 			console.log('you lost!');
 			endGame(false);
-			// stop timer
 			resetTimer();
 		}
 	}
@@ -32,11 +30,16 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame 
 			<p>This is the game container</p>
 			{/* Timer Component */}
 			<Timer />
+			{state.game.victory === null ? (
+				<p>Will you win?</p>
+			) : state.game.victory ? (
+				<p>You win!</p>
+			) : (
+				<p>You lose...</p>
+			)}
 			{/* Pause buttons */}
 			{/* When clicking pause, it should bring up the modal */}
 			<button onClick={pauseGame}>Pause</button>
-			<button onClick={() => endGame(true)}>Win</button>
-			<button onClick={() => endGame(false)}>Lose</button>
 			{/* Card Gallery Component */}
 			<CardGallery />
 		</div>
