@@ -1,4 +1,4 @@
-import { CHOOSE_DECK, RESET_GAME } from '../actionTypes.js';
+import { CHOOSE_DECK, RESET_GAME } from '../actionTypes.tsx';
 
 const initialState = {
 	deckType: 'deck1',

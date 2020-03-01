@@ -1,4 +1,4 @@
-import { CHOOSE_DIFFICULTY, RESET_GAME } from '../actionTypes.js';
+import { CHOOSE_DIFFICULTY, RESET_GAME } from '../actionTypes.tsx';
 
 const initialState = {
 	difficulty: 'easy',

@@ -1,4 +1,4 @@
-import { START_TIMER, TICK, STOP_TIMER, RESET_TIMER } from '../actionTypes.js';
+import { START_TIMER, TICK, STOP_TIMER, RESET_TIMER } from '../actionTypes.tsx';
 
 const initialState = {
 	isOn: false,

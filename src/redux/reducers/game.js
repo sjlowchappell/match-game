@@ -1,4 +1,4 @@
-import { START_GAME, PAUSE_GAME, END_GAME, RESET_GAME } from '../actionTypes.js';
+import { START_GAME, PAUSE_GAME, END_GAME, RESET_GAME } from '../actionTypes.tsx';
 
 const initialState = {
 	playing: false,

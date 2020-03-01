@@ -1,4 +1,4 @@
-import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes.js';
+import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes.tsx';
 
 const initialState = {
 	deck: [
