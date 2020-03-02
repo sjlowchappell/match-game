@@ -79,16 +79,16 @@ const Modal: FC<ModalProps> = ({
 					accusantium consectetur, fugiat laudantium totam quibusdam voluptatem illum aut adipisci laborum
 					nisi fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
 				</p>
-				{/* this can be extracted into a component and reused for both decks and difficulty */}
 				{/* if no victory boolean, put general statement. otherwise display win or loss */}
 				{/* this is broken now that I can't have a null value for victory, need to fix the conditional later */}
-				{state.game.victory === false ? (
+				{state.game.completed === false ? (
 					<p>Will you win?</p>
 				) : state.game.victory ? (
 					<p>You win!</p>
 				) : (
 					<p>You lose...</p>
 				)}
+				{/* this can be extracted into a component and reused for both decks and difficulty */}
 				<h2>Current deck: {state.decks.deckType} </h2>
 				<h3>Change deck:</h3>
 				<div>
@@ -105,7 +105,8 @@ const Modal: FC<ModalProps> = ({
 				</div>
 
 				{/* Play button should start the game */}
-				<button onClick={start}>Play</button>
+				{state.game.completed ? null : <button onClick={start}>Play</button>}
+
 				<button onClick={reset}>Reset</button>
 			</Content>
 		</Container>

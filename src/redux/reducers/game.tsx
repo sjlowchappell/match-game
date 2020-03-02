@@ -3,6 +3,7 @@ import { START_GAME, PAUSE_GAME, END_GAME, RESET_GAME } from '../actionTypes';
 interface GameState {
 	playing: boolean;
 	victory: boolean;
+	completed: boolean;
 }
 interface ActionState {
 	type: string;
@@ -14,6 +15,7 @@ interface ActionState {
 const initialState: GameState = {
 	playing: false,
 	victory: false,
+	completed: false,
 };
 
 export default function(state = initialState, action: ActionState) {
@@ -35,6 +37,7 @@ export default function(state = initialState, action: ActionState) {
 				...state,
 				playing: false,
 				victory: action.payload.endType,
+				completed: true,
 			};
 		}
 		case RESET_GAME: {
