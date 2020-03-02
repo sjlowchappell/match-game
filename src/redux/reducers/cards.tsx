@@ -1,5 +1,75 @@
 import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes';
 
+// Once decks have been established, deck should be a variable pulled in from
+// a utility file
+const deck = [
+	{
+		id: 0,
+		hidden: true,
+		compareVal: 1,
+		locked: false,
+	},
+	{
+		id: 1,
+		hidden: true,
+		compareVal: 2,
+		locked: false,
+	},
+	{
+		id: 2,
+		hidden: true,
+		compareVal: 3,
+		locked: false,
+	},
+	{
+		id: 3,
+		hidden: true,
+		compareVal: 1,
+		locked: false,
+	},
+	{
+		id: 4,
+		hidden: true,
+		compareVal: 2,
+		locked: false,
+	},
+	{
+		id: 5,
+		hidden: true,
+		compareVal: 3,
+		locked: false,
+	},
+];
+
+const shuffle = (array: Card[]) => {
+	// create a new array so there are no side effects
+	const shuffled = [...array];
+	// Loop through all elements of the array starting at the last element
+	for (let i = shuffled.length - 1; i > 0; i--) {
+		// get random number from 0 to i - 1
+		let j = Math.floor(Math.random() * i);
+
+		// Save shuffled[i] in a temporary variable
+		let t = shuffled[i];
+		// Set shuffled[i] to the same as shuffled[j] but update the id
+		// So that it can be used for matching later
+		shuffled[i] = {
+			...shuffled[j],
+			id: i,
+		};
+		// Set shuffled[j] equal to the temporary variable, swapping the 2
+		shuffled[j] = t;
+	}
+	// Update the id of the first element of the array to 0
+	shuffled[0] = {
+		...shuffled[0],
+		id: 0,
+	};
+
+	// return the new array
+	return shuffled;
+};
+
 interface Card {
 	id: number;
 	hidden: boolean;
@@ -20,44 +90,7 @@ interface ActionState {
 }
 
 const initialState: CardsState = {
-	deck: [
-		{
-			id: 0,
-			hidden: true,
-			compareVal: 1,
-			locked: false,
-		},
-		{
-			id: 1,
-			hidden: true,
-			compareVal: 2,
-			locked: false,
-		},
-		{
-			id: 2,
-			hidden: true,
-			compareVal: 3,
-			locked: false,
-		},
-		{
-			id: 3,
-			hidden: true,
-			compareVal: 1,
-			locked: false,
-		},
-		{
-			id: 4,
-			hidden: true,
-			compareVal: 2,
-			locked: false,
-		},
-		{
-			id: 5,
-			hidden: true,
-			compareVal: 3,
-			locked: false,
-		},
-	],
+	deck: shuffle(deck),
 	flipped: [],
 	remainingPairs: 3,
 };
@@ -130,6 +163,7 @@ export default function(state = initialState, action: ActionState) {
 		}
 		case RESET_GAME: {
 			return {
+				deck: shuffle(initialState.deck),
 				...initialState,
 			};
 		}
