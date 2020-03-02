@@ -24,19 +24,79 @@ const deck = [
 	{
 		id: 3,
 		hidden: true,
-		compareVal: 1,
+		compareVal: 4,
 		locked: false,
 	},
 	{
 		id: 4,
 		hidden: true,
-		compareVal: 2,
+		compareVal: 5,
 		locked: false,
 	},
 	{
 		id: 5,
 		hidden: true,
+		compareVal: 6,
+		locked: false,
+	},
+	{
+		id: 6,
+		hidden: true,
+		compareVal: 1,
+		locked: false,
+	},
+	{
+		id: 7,
+		hidden: true,
+		compareVal: 2,
+		locked: false,
+	},
+	{
+		id: 8,
+		hidden: true,
 		compareVal: 3,
+		locked: false,
+	},
+	{
+		id: 9,
+		hidden: true,
+		compareVal: 4,
+		locked: false,
+	},
+	{
+		id: 10,
+		hidden: true,
+		compareVal: 5,
+		locked: false,
+	},
+	{
+		id: 11,
+		hidden: true,
+		compareVal: 6,
+		locked: false,
+	},
+	{
+		id: 12,
+		hidden: true,
+		compareVal: 7,
+		locked: false,
+	},
+	{
+		id: 13,
+		hidden: true,
+		compareVal: 7,
+		locked: false,
+	},
+	{
+		id: 14,
+		hidden: true,
+		compareVal: 8,
+		locked: false,
+	},
+	{
+		id: 15,
+		hidden: true,
+		compareVal: 8,
 		locked: false,
 	},
 ];
@@ -92,7 +152,7 @@ interface ActionState {
 const initialState: CardsState = {
 	deck: shuffle(deck),
 	flipped: [],
-	remainingPairs: 3,
+	remainingPairs: deck.length / 2,
 };
 
 export default function(state = initialState, action: ActionState) {
