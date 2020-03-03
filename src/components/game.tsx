@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CardGallery from './cardGallery';
 import Timer from './timer';
 import { resetTimer, stopTimer, pauseGame, endGame, resetGame } from '../redux/actions';
+import styled from 'styled-components';
 
 interface GameProps {
 	endGame: (endType: boolean) => void;
@@ -12,6 +13,16 @@ interface GameProps {
 	resetGame: () => void;
 	state: any;
 }
+
+const Info = styled.div`
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	@media (min-width: 550px) {
+		max-width: 60%;
+		margin: auto;
+	}
+`;
 
 const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame, resetGame }) => {
 	// Game win conditions
@@ -52,14 +63,16 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame,
 	};
 	return (
 		<div>
-			{/* Pause buttons */}
-			{/* When clicking pause, it should bring up the modal */}
-			<button onClick={pause}>Pause</button>
-			<button onClick={reset}>Reset</button>
-			{/* Timer Component */}
-			<Timer />
 			{/* Display remaining pairs of cards */}
 			<p>Remaining pairs: {state.cards.remainingPairs}</p>
+			<Info>
+				{/* Timer Component */}
+				<Timer />
+				{/* Pause buttons */}
+				{/* When clicking pause, it should bring up the modal */}
+				<button onClick={pause}>Pause</button>
+				{/* <button onClick={reset}>Reset</button> */}
+			</Info>
 			{/* Card Gallery Component */}
 			<CardGallery />
 		</div>

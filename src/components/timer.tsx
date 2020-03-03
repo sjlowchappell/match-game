@@ -18,7 +18,7 @@ const Timer: FC<TimerProps> = ({ timer }) => {
 
 		const timestamp = new Date(time);
 		let s = pad(timestamp.getSeconds().toString(), 2);
-		let ms = pad(timestamp.getMilliseconds().toString(), 2);
+		let ms = pad(timestamp.getMilliseconds().toString(), 3);
 
 		return `${s} . ${ms}`;
 	};

@@ -8,7 +8,7 @@ function App() {
 	return (
 		<div className="App">
 			<Layout>
-				{/* <Modal /> */}
+				<Modal />
 				<Game />
 			</Layout>
 		</div>
