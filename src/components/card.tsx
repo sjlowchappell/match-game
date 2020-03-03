@@ -6,9 +6,11 @@ import styled from 'styled-components';
 const Container = styled.div``;
 
 const Button = styled.button`
-	width: calc(100% - 10px);
-	padding: 30px 15px;
 	margin: 5px;
+	@media (min-width: 470px) {
+		width: calc(100% - 10px);
+		padding: 30px 15px;
+	}
 `;
 
 interface CardProps {

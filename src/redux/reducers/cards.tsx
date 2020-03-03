@@ -145,7 +145,7 @@ interface CardsState {
 interface ActionState {
 	type: string;
 	payload: {
-		id: any;
+		id: number;
 	};
 }
 

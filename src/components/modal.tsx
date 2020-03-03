@@ -17,7 +17,7 @@ const Container = styled.div<ContainerProps>`
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
-	padding-top: 50px;
+	padding: 50px 0px;
 	${props =>
 		props.playing &&
 		css`
@@ -25,12 +25,23 @@ const Container = styled.div<ContainerProps>`
 		`}
 `;
 
-const Content = styled.div`
+const ContentContainer = styled.div`
 	background-color: #fefefe;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 80%;
+	max-width: 95%;
+	@media (min-width: 660px) {
+		max-width: 80%;
+	}
+`;
+
+const TextContent = styled.div`
+	margin: auto;
+	max-width: 95%;
+	@media (min-width: 1000px) {
+		max-width: 70%;
+	}
 `;
 
 interface ModalProps {
@@ -71,25 +82,33 @@ const Modal: FC<ModalProps> = ({
 	};
 	return (
 		<Container playing={state.game.playing}>
-			<Content>
-				<h2>Welcome to Match Game!</h2>
-				<h3>Rules:</h3>
-				<p>
-					Here are the rules ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eos
-					accusantium consectetur, fugiat laudantium totam quibusdam voluptatem illum aut adipisci laborum
-					nisi fugit temporibus nostrum! Sequi ex quae inventore? Excepturi.
-				</p>
-				{/* if no victory boolean, put general statement. otherwise display win or loss */}
-				{/* this is broken now that I can't have a null value for victory, need to fix the conditional later */}
-				{state.game.completed === false ? (
-					<p>Will you win?</p>
-				) : state.game.victory ? (
-					<p>You win!</p>
-				) : (
-					<p>You lose...</p>
-				)}
-				{/* this can be extracted into a component and reused for both decks and difficulty */}
-				<h2>Current deck: {state.decks.deckType} </h2>
+			<ContentContainer>
+				<TextContent>
+					<h2>Welcome to Match Game!</h2>
+					{/* if no victory boolean, put general statement. otherwise display win or loss */}
+					{/* this is broken now that I can't have a null value for victory, need to fix the conditional later */}
+					{state.game.completed === false ? (
+						<div>
+							<h3>The Rules:</h3>
+							<p>
+								Match Game is a memory matching activity. You'll be provided 16 cards that are face
+								down. Select a card to flip it over. Select a second card. If the cards match, they
+								remain face up. If they do not, they will flip back over. Try to find all of the matches
+								before time runs out!
+							</p>
+
+							<p>
+								Click Pause at any time to pause the timer and review the rules, or click reset to
+								shuffle the cards and start over.
+							</p>
+						</div>
+					) : state.game.victory ? (
+						<p>You win!</p>
+					) : (
+						<p>You lose...</p>
+					)}
+					{/* STRETCH GOAL: Change Deck and Difficulty. this can be extracted into a component and reused for both decks and difficulty */}
+					{/* <h2>Current deck: {state.decks.deckType} </h2>
 				<h3>Change deck:</h3>
 				<div>
 					<button onClick={() => chooseDeck('deck1')}>Deck 1</button>
@@ -102,13 +121,14 @@ const Modal: FC<ModalProps> = ({
 					<button onClick={() => chooseDifficulty('easy')}>Easy</button>
 					<button onClick={() => chooseDifficulty('medium')}>Medium</button>
 					<button onClick={() => chooseDifficulty('hard')}>Hard</button>
-				</div>
+				</div> */}
 
-				{/* Play button should start the game */}
-				{state.game.completed ? null : <button onClick={start}>Play</button>}
+					{/* Play button should start the game */}
+					{state.game.completed ? null : <button onClick={start}>Play</button>}
 
-				<button onClick={reset}>Reset</button>
-			</Content>
+					<button onClick={reset}>Reset</button>
+				</TextContent>
+			</ContentContainer>
 		</Container>
 	);
 };

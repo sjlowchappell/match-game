@@ -4,11 +4,11 @@ import Card from './card';
 import styled from 'styled-components';
 
 const Container = styled.div`
-	padding: 20px 0px;
+	// padding: 20px 0px;
 	display: flex;
 	flex-wrap: wrap;
 	> * {
-		min-width: 25%;
+		width: 25%;
 	}
 `;
 
@@ -23,7 +23,7 @@ const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 	return (
 		<Container>
 			{/* go through deck and return a new card component for each card */}
-			{cards.deck.map((card: any, index: any) => {
+			{cards.deck.map((card: any, index: number) => {
 				return <Card key={`cardid-${index}`} card={card} image={'Fake'} flipped={cards.flipped} />;
 			})}
 		</Container>

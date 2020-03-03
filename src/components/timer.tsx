@@ -8,24 +8,23 @@ interface TimerProps {
 }
 
 const Timer: FC<TimerProps> = ({ timer }) => {
-	const format = (time: any) => {
-		const pad = (time: any, length: any) => {
+	const format = (time: number) => {
+		const pad = (time: string, length: number) => {
 			while (time.length < length) {
 				time = '0' + time;
 			}
 			return time;
 		};
 
-		time = new Date(time);
-		let m = pad(time.getMinutes().toString(), 2);
-		let s = pad(time.getSeconds().toString(), 2);
-		let ms = pad(time.getMilliseconds().toString(), 3);
+		const timestamp = new Date(time);
+		let s = pad(timestamp.getSeconds().toString(), 2);
+		let ms = pad(timestamp.getMilliseconds().toString(), 2);
 
-		return `${m} : ${s} . ${ms}`;
+		return `${s} . ${ms}`;
 	};
 	return (
 		<div>
-			<p>Time Remaining: {format(timer.time)}</p>
+			<p>{format(timer.time)}</p>
 		</div>
 	);
 };

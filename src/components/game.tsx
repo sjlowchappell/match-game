@@ -52,13 +52,12 @@ const Game: FC<GameProps> = ({ state, stopTimer, resetTimer, pauseGame, endGame,
 	};
 	return (
 		<div>
-			{/* Timer Component */}
-			<Timer />
-
 			{/* Pause buttons */}
 			{/* When clicking pause, it should bring up the modal */}
 			<button onClick={pause}>Pause</button>
 			<button onClick={reset}>Reset</button>
+			{/* Timer Component */}
+			<Timer />
 			{/* Display remaining pairs of cards */}
 			<p>Remaining pairs: {state.cards.remainingPairs}</p>
 			{/* Card Gallery Component */}
