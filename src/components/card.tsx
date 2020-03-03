@@ -23,7 +23,7 @@ interface CardProps {
 	};
 	flipCard: (id: number) => void;
 	compareCard: () => void;
-	flipped: [];
+	flipped: number[];
 }
 
 const Card: FC<CardProps> = ({ card, flipCard, compareCard, flipped }) => {

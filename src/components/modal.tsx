@@ -84,44 +84,29 @@ const Modal: FC<ModalProps> = ({
 		<Container playing={state.game.playing}>
 			<ContentContainer>
 				<TextContent>
-					<h2>Welcome to Match Game!</h2>
 					{/* if no victory boolean, put general statement. otherwise display win or loss */}
 					{/* this is broken now that I can't have a null value for victory, need to fix the conditional later */}
 					{state.game.completed === false ? (
 						<div>
+							<h2>Welcome to Match Up!</h2>
 							<h3>The Rules:</h3>
 							<p>
-								Match Game is a memory matching activity. You'll be provided 16 cards that are face
+								Match Up is a memory concentration activity. You'll be provided 16 cards that are face
 								down. Select a card to flip it over. Select a second card. If the cards match, they
 								remain face up. If they do not, they will flip back over. Try to find all of the matches
 								before time runs out!
 							</p>
 
 							<p>
-								Click Pause at any time to pause the timer and review the rules, or click reset to
+								Click 'Pause' at any time to pause the timer and review the rules, or click 'Reset' to
 								shuffle the cards and start over.
 							</p>
 						</div>
 					) : state.game.victory ? (
-						<p>You win!</p>
+						<h2>You win!</h2>
 					) : (
-						<p>You lose...</p>
+						<h2>You lose...</h2>
 					)}
-					{/* STRETCH GOAL: Change Deck and Difficulty. this can be extracted into a component and reused for both decks and difficulty */}
-					{/* <h2>Current deck: {state.decks.deckType} </h2>
-				<h3>Change deck:</h3>
-				<div>
-					<button onClick={() => chooseDeck('deck1')}>Deck 1</button>
-					<button onClick={() => chooseDeck('deck2')}>Deck 2</button>
-					<button onClick={() => chooseDeck('deck3')}>Deck 3</button>
-				</div>
-				<h2>Current difficulty: {state.difficulty.difficulty}</h2>
-				<h3>Change difficulty:</h3>
-				<div>
-					<button onClick={() => chooseDifficulty('easy')}>Easy</button>
-					<button onClick={() => chooseDifficulty('medium')}>Medium</button>
-					<button onClick={() => chooseDifficulty('hard')}>Hard</button>
-				</div> */}
 
 					{/* Play button should start the game */}
 					{state.game.completed ? null : <button onClick={start}>Play</button>}

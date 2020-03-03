@@ -11,7 +11,7 @@ const Layout: FC = ({ children }) => {
 	return (
 		<Wrapper>
 			<header>
-				<h1>Match Game</h1>
+				<h1>Match Up</h1>
 			</header>
 			<main>{children}</main>
 			<footer>
