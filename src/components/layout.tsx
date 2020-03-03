@@ -15,7 +15,9 @@ const Layout: FC = ({ children }) => {
 			</header>
 			<main>{children}</main>
 			<footer>
-				Designed and Built by <a href="https://samlow-chappell.com">Sam Low-Chappell</a>
+				<p>
+					Designed and Built by <a href="https://samlow-chappell.com">Sam Low-Chappell</a>
+				</p>
 			</footer>
 		</Wrapper>
 	);

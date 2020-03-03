@@ -4,7 +4,7 @@ import Card from './card';
 import styled from 'styled-components';
 
 const Container = styled.div`
-	padding: 50px 0px;
+	padding: 20px 0px;
 	display: flex;
 	flex-wrap: wrap;
 	> * {
