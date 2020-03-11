@@ -24,7 +24,7 @@ const CardGallery: FC<CardGalleryProps> = ({ cards }) => {
 		<Container>
 			{/* go through deck and return a new card component for each card */}
 			{cards.deck.map((card: any, index: number) => {
-				return <Card key={`cardid-${index}`} card={card} image={'Fake'} flipped={cards.flipped} />;
+				return <Card key={`cardid-${index}`} card={card} flipped={cards.flipped} />;
 			})}
 		</Container>
 	);

@@ -1,4 +1,16 @@
 import { FLIP_CARD, COMPARE_CARD, RESET_GAME } from '../actionTypes';
+import barbarian from '../../assets/barbarian.png';
+import bard from '../../assets/bard.jpeg';
+import cleric from '../../assets/cleric.jpeg';
+import druid from '../../assets/druid.jpg';
+import fighter from '../../assets/fighter.jpeg';
+import monk from '../../assets/monk.jpeg';
+import paladin from '../../assets/paladin.jpeg';
+import ranger from '../../assets/ranger.jpeg';
+// import rogue from '../../assets/rogue.jpeg';
+// import sorcerer from '../../assets/sorcerer.jpeg';
+// import warlock from '../../assets/warlock.jpeg';
+// import wizard from '../../assets/wizard.jpeg';
 
 // Once decks have been established, deck should be a variable pulled in from
 // a utility file
@@ -8,96 +20,112 @@ const deck = [
 		hidden: true,
 		compareVal: 1,
 		locked: false,
+		image: barbarian,
 	},
 	{
 		id: 1,
 		hidden: true,
 		compareVal: 2,
 		locked: false,
+		image: bard,
 	},
 	{
 		id: 2,
 		hidden: true,
 		compareVal: 3,
 		locked: false,
+		image: cleric,
 	},
 	{
 		id: 3,
 		hidden: true,
 		compareVal: 4,
 		locked: false,
+		image: druid,
 	},
 	{
 		id: 4,
 		hidden: true,
 		compareVal: 5,
 		locked: false,
+		image: fighter,
 	},
 	{
 		id: 5,
 		hidden: true,
 		compareVal: 6,
 		locked: false,
+		image: monk,
 	},
 	{
 		id: 6,
 		hidden: true,
 		compareVal: 1,
 		locked: false,
+		image: barbarian,
 	},
 	{
 		id: 7,
 		hidden: true,
 		compareVal: 2,
 		locked: false,
+		image: bard,
 	},
 	{
 		id: 8,
 		hidden: true,
 		compareVal: 3,
 		locked: false,
+		image: cleric,
 	},
 	{
 		id: 9,
 		hidden: true,
 		compareVal: 4,
 		locked: false,
+		image: druid,
 	},
 	{
 		id: 10,
 		hidden: true,
 		compareVal: 5,
 		locked: false,
+		image: fighter,
 	},
 	{
 		id: 11,
 		hidden: true,
 		compareVal: 6,
 		locked: false,
+		image: monk,
 	},
 	{
 		id: 12,
 		hidden: true,
 		compareVal: 7,
 		locked: false,
+		image: paladin,
 	},
 	{
 		id: 13,
 		hidden: true,
 		compareVal: 7,
 		locked: false,
+		image: paladin,
 	},
 	{
 		id: 14,
 		hidden: true,
 		compareVal: 8,
 		locked: false,
+		image: ranger,
 	},
 	{
 		id: 15,
 		hidden: true,
 		compareVal: 8,
 		locked: false,
+		image: ranger,
 	},
 ];
 

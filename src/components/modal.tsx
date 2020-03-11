@@ -86,6 +86,7 @@ const Modal: FC<ModalProps> = ({
 				<TextContent>
 					{/* if no victory boolean, put general statement. otherwise display win or loss */}
 					{/* this is broken now that I can't have a null value for victory, need to fix the conditional later */}
+
 					{state.game.completed === false ? (
 						<div>
 							<h2>Welcome to Match Up!</h2>
