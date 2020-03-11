@@ -4,14 +4,24 @@ import { flipCard, compareCard } from '../redux/actions';
 import styled from 'styled-components';
 import backside from '../assets/backside.png';
 
-const Container = styled.div``;
+const Container = styled.div`
+	margin: 5px;
+	text-align: center;
+`;
 
 const Button = styled.button`
-	margin: 5px;
-	padding: 0px;
-	@media (min-width: 470px) {
-		width: calc(100% - 10px);
-	}
+	background: none;
+	border: none;
+`;
+
+const Backside = styled.div`
+	padding: 5px;
+	border: 3px solid #e93f33;
+	border-radius: 15px;
+`;
+
+const Flipped = styled.div`
+	padding: 8px;
 `;
 
 interface CardProps {
@@ -40,15 +50,21 @@ const Card: FC<CardProps> = ({ card, flipCard, compareCard, flipped }) => {
 		<Container>
 			{/* If a card has been matched already and locked is true, just show the card */}
 			{locked ? (
-				<img src={image} alt="Icon" />
+				<Flipped>
+					<img src={image} alt="Icon" />
+				</Flipped>
 			) : (
 				// If the card has not been matched, render a button that can be clicked to flip the card
-				<div>
-					<Button onClick={() => handleClick()}>
-						{/* Conditionally render the image based upon state */}
-						{hidden ? <img src={backside} alt="Backside" /> : <img src={image} alt="Icon" />}
-					</Button>
-				</div>
+				<Button onClick={() => handleClick()}>
+					{/* Conditionally render the image based upon state */}
+					{hidden ? (
+						<Backside>
+							<img src={backside} alt="Backside" />
+						</Backside>
+					) : (
+						<img src={image} alt="Icon" />
+					)}
+				</Button>
 			)}
 		</Container>
 	);

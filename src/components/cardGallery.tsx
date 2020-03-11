@@ -8,7 +8,9 @@ const Container = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	> * {
-		width: 25%;
+		width: calc(25% - 10px);
+		display: flex;
+		justify-content: center;
 	}
 `;
 

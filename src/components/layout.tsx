@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-	max-width: 960px;
+	max-width: 600px;
 	margin: 0 auto;
 	padding: 0 15px;
 `;
