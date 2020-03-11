@@ -2,14 +2,15 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { flipCard, compareCard } from '../redux/actions';
 import styled from 'styled-components';
+import backside from '../assets/backside.png';
 
 const Container = styled.div``;
 
 const Button = styled.button`
 	margin: 5px;
+	padding: 0px;
 	@media (min-width: 470px) {
 		width: calc(100% - 10px);
-		padding: 30px 15px;
 	}
 `;
 
@@ -39,15 +40,15 @@ const Card: FC<CardProps> = ({ card, flipCard, compareCard, flipped }) => {
 		<Container>
 			{/* If a card has been matched already and locked is true, just show the card */}
 			{locked ? (
-				<p>
-					<img src={image} alt="Icon" />
-				</p>
+				<img src={image} alt="Icon" />
 			) : (
 				// If the card has not been matched, render a button that can be clicked to flip the card
-				<Button onClick={() => handleClick()}>
-					{/* Conditionally render the image based upon state */}
-					{hidden ? 'Back Side' : <img src={image} alt="Icon" />}
-				</Button>
+				<div>
+					<Button onClick={() => handleClick()}>
+						{/* Conditionally render the image based upon state */}
+						{hidden ? <img src={backside} alt="Backside" /> : <img src={image} alt="Icon" />}
+					</Button>
+				</div>
 			)}
 		</Container>
 	);

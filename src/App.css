@@ -204,3 +204,8 @@ p,
 button {
 	font-size: 2rem;
 }
+
+img {
+	max-width: 100%;
+	display: block;
+}
